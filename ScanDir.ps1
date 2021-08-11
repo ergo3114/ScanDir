@@ -39,6 +39,7 @@ function ScanDir{
             $null = $newList.Add($_ + '.asp')
             $null = $newList.Add($_ + '.aspx')
             $null = $newList.Add($_ + '.txt')
+            $null = $newList.Add($_ + '.xml')
         }
         $null = $formattedDirList.AddRange($dirList)
         $results = New-Object System.Collections.ArrayList
