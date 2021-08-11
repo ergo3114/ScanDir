@@ -21,7 +21,10 @@ function ScanDir{
         $PathList,
 
         [switch]
-        $ShowNonHits
+        $ShowNonHits,
+
+        [switch]
+        $AllowsAutoRedirect
     )
 
     BEGIN{
@@ -50,7 +53,7 @@ function ScanDir{
             if(![string]::IsNullOrWhitespace($dir)){
                 $URI = $using:URL + '/' + $dir
                 $httpRequest = [System.Net.WebRequest]::Create($URI)
-                $httpRequest.AllowAutoRedirect = $false
+                $httpRequest.AllowAutoRedirect = $using:AllowsAutoRedirect
                 try{
                     $httpResponse = $httpRequest.GetResponse()
                     $httpStatus = [int]$httpResponse.StatusCode
