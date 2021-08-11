@@ -63,7 +63,7 @@ function ScanDir{
                     $httpStatus = -1
                 }
 
-                if($AllowsAutoRedirect){
+                if($using:AllowsAutoRedirect){
                     $obj = [pscustomobject]@{
                         'URI' = $URI
                         'dir' = $dir
