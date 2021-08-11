@@ -67,6 +67,7 @@ function ScanDir{
                     'URI' = $URI
                     'dir' = $dir
                     'HttpStatus' = $httpStatus
+                    'Redirected URI' = $httpResponse.ResponseUri
                 }
                 try{
                     $null = $results.Add($obj)
