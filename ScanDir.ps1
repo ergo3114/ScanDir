@@ -127,9 +127,11 @@ function ScanDir{
     }
     END{
         if($ShowNonHits){
-            $results | Sort-Object -Property HttpStatus -Descending
+            $results = $results | Sort-Object -Property HttpStatus -Descending
+            $results
         } else{
-            $results | Where-Object {$_.HttpStatus -ne -1} | Sort-Object -Property HttpStatus
+            $results = $results | Where-Object {$_.HttpStatus -ne -1} | Sort-Object -Property HttpStatus
+            $results
         }
 
         if($null -eq $httpResponse){}
