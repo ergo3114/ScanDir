@@ -63,11 +63,19 @@ function ScanDir{
                     $httpStatus = -1
                 }
 
-                $obj = [pscustomobject]@{
-                    'URI' = $URI
-                    'dir' = $dir
-                    'HttpStatus' = $httpStatus
-                    'Redirected URI' = $httpResponse.ResponseUri
+                if($AllowsAutoRedirect){
+                    $obj = [pscustomobject]@{
+                        'URI' = $URI
+                        'dir' = $dir
+                        'HttpStatus' = $httpStatus
+                        'Redirected URI' = $httpResponse.ResponseUri
+                    }
+                } else{
+                    $obj = [pscustomobject]@{
+                        'URI' = $URI
+                        'dir' = $dir
+                        'HttpStatus' = $httpStatus
+                    }
                 }
                 try{
                     $null = $results.Add($obj)
