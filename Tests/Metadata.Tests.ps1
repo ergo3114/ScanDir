@@ -1,11 +1,9 @@
 Describe "Metadata"{
-    BeforeAll{
-        Set-Location $PSScriptRoot
-        Set-Location ..
-        $psscripts = $((Get-ChildItem "*.ps1").Name)
-        foreach($psscript in $psscripts){
-            . .\$psscript
-        }
+    Set-Location $PSScriptRoot
+    Set-Location ..
+    $psscripts = $((Get-ChildItem "*.ps1").Name)
+    foreach($psscript in $psscripts){
+        . .\$psscript
     }
 
     It "Should have a LICENSE file" {
@@ -21,10 +19,8 @@ Describe "Metadata"{
     FOREACH($Function in $FunctionsList){
         $Help = Get-Help -Name $Function -Full
 
-        Context "$Function - Help"{
-            It "Synopsis"{$Help.Synopsis | Should -Not -BeNullOrEmpty}
-            It "Description"{$Help.Description | Should -Not -BeNullOrEmpty}
-            It "Examples"{$Help.Examples.Example.Code.Count | Should -BeGreaterThan 0}
-        }
+        It "$Function - Synopsis"{$Help.Synopsis | Should -Not -BeNullOrEmpty}
+        It "$Function - Description"{$Help.Description | Should -Not -BeNullOrEmpty}
+        It "$Function - Examples"{$Help.Examples.Example.Code.Count | Should -BeGreaterThan 0}
     }
 }
